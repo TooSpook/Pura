@@ -1,9 +1,11 @@
-import ctypes
+import sys
 from main_window import MainWindow
 from PyQt6.QtWidgets import QApplication
 from PyQt6.QtGui import QIcon
 
-#ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID("csvcleaner.pre-alpha.1.7")
+if sys.platform == "win32":
+    import ctypes
+    ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID("csvcleaner.pre-alpha.1.7")
 
 def main():
     app = QApplication([]) 
