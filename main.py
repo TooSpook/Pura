@@ -1,4 +1,5 @@
 import sys
+import ctypes
 from main_window import MainWindow
 from PyQt6.QtWidgets import QApplication
 from PyQt6.QtGui import QIcon
@@ -11,6 +12,7 @@ def main():
     app = QApplication([]) 
     app.setWindowIcon(QIcon("resources/app_icon.png"))
     window = MainWindow()   
+    window = MainWindow()
     window.show()
     app.exec()
 
