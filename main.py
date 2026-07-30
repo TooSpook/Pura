@@ -7,7 +7,7 @@ from PyQt6.QtGui import QIcon
 if sys.platform == "win32":
     import ctypes
     ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(
-        "csvcleaner.pre-alpha.1.7"
+        "csvcleaner.pre-alpha.1.9"
     )
 
 def main():
