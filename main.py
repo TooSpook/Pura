@@ -7,14 +7,13 @@ from PyQt6.QtGui import QIcon
 if sys.platform == "win32":
     import ctypes
     ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(
-        "csvcleaner.pre-alpha.1.9"
+        "csvcleaner.pre-alpha.2.0"
     )
 
 def main():
     app = QApplication([]) 
     app.setWindowIcon(QIcon("resources/app_icon.png"))
     window = MainWindow()   
-    window = MainWindow()
     window.show()
     app.exec()
 
