@@ -1,3 +1,4 @@
+from clean import *
 from PyQt6.QtCore import Qt, QSize
 from PyQt6.QtWidgets import QMainWindow, QPushButton, QFileDialog, QWidget, QListWidget, QGridLayout, QVBoxLayout, QCheckBox 
 from PyQt6.QtGui import QIcon
@@ -6,7 +7,7 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
 
-        self.setWindowTitle("CSV cleaner")
+        self.setWindowTitle("Pura")
         self.setMinimumSize(QSize(768, 384))
         self.setWindowIcon(QIcon("resources/app_icon.png"))
         self.file_list = QListWidget()
@@ -15,20 +16,21 @@ class MainWindow(QMainWindow):
         select_button.setStyleSheet("padding: 2px 6px; font-size: 14px;")
         select_button.clicked.connect(self.file_selection)
 
+        self.dupe_check = QCheckBox(text="Remove Duplicates")
+        #missing_check = QCheckBox(text="Remove Missing Values")
+        #outliers_check = QCheckBox(text="Remove Outliers")
+        #noise_check = QCheckBox(text="Remove Noise")
+
         clean_button = QPushButton("Start Cleaning")
         clean_button.setStyleSheet("padding: 8px 28px; font-size: 14px;")
-
-        dupe_check = QCheckBox(text="Remove Duplicates")
-        missing_check = QCheckBox(text="Remove Missing Values")
-        outliers_check = QCheckBox(text="Remove Outliers")
-        noise_check = QCheckBox(text="Remove Noise")
-
+        clean_button.clicked.connect(lambda: self.clean(self.file_list.item(0).text()))
+        
         checkbox_layout = QVBoxLayout()
         checkbox_layout.setSpacing(5)
-        checkbox_layout.addWidget(dupe_check)
-        checkbox_layout.addWidget(missing_check)
-        checkbox_layout.addWidget(outliers_check)
-        checkbox_layout.addWidget(noise_check)
+        checkbox_layout.addWidget(self.dupe_check)
+        #checkbox_layout.addWidget(missing_check)
+        #checkbox_layout.addWidget(outliers_check)
+        #checkbox_layout.addWidget(noise_check)
 
         checkbox_container = QWidget()
         checkbox_container.setLayout(checkbox_layout)
@@ -45,7 +47,7 @@ class MainWindow(QMainWindow):
 
     def file_selection(self) -> str:
         path, _ = QFileDialog.getOpenFileName(
-            self, "Open CSV file", "", "CSV Files (*.csv);;All Files (*)"
+            self, "Open Data File", "", "CSV/DAT Files (*.csv *.dat);;All Files (*)"
         )
 
         if not path:
