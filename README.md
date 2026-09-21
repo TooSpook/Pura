@@ -1,3 +1,3 @@
-# CSV File Data Cleaner
+# Pura
 
 **Warning!** This app is HIGHLY unfinished.
